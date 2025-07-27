@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'mono': ['Fira Code', 'monospace'],
+				'display': ['Orbitron', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +65,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				terminal: {
+					green: 'hsl(var(--terminal-green))',
+					cyan: 'hsl(var(--terminal-cyan))',
+					yellow: 'hsl(var(--terminal-yellow))',
+					red: 'hsl(var(--terminal-red))',
+					orange: 'hsl(var(--terminal-orange))',
 				}
 			},
 			borderRadius: {
@@ -88,7 +99,13 @@ export default {
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'typing': 'typing 3.5s steps(40, end)',
+				'blink-caret': 'blink-caret 0.75s step-end infinite',
+				'fade-in': 'fadeIn 0.6s ease-in',
+				'slide-up': 'slideUp 0.8s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'matrix-rain': 'matrix-rain 10s linear infinite'
 			}
 		}
 	},
