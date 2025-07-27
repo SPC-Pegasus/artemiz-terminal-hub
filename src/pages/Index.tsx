@@ -59,13 +59,13 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="text-6xl md:text-8xl font-display font-bold text-primary glow-text mb-6">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold text-primary glow-text mb-6">
               ARTEMIZ
             </h1>
-            <p className="text-xl md:text-2xl text-terminal-cyan font-mono mb-4">
+            <p className="text-lg sm:text-xl md:text-2xl text-terminal-cyan font-mono mb-4">
               Department of Computer Science
             </p>
-            <p className="text-lg text-muted-foreground font-mono mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground font-mono mb-8 max-w-2xl mx-auto px-4">
               Where Code Meets Creativity
             </p>
           </motion.div>

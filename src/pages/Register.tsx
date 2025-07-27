@@ -34,7 +34,7 @@ const formSchema = z.object({
   // Step 4: Interests and Motivation
   areasOfInterest: z.array(z.string()).min(1, 'Select at least one area of interest'),
   previousProjects: z.string().optional(),
-  motivation: z.string().min(50, 'Please provide at least 50 characters'),
+  motivation: z.string().min(1, 'Please share your motivation'),
   timeCommitment: z.string().min(1, 'Please select your time commitment'),
   
   // Step 5: Additional Info
@@ -42,7 +42,6 @@ const formSchema = z.object({
   githubProfile: z.string().url().optional().or(z.literal('')),
   linkedinProfile: z.string().url().optional().or(z.literal('')),
   referralSource: z.string().min(1, 'Please tell us how you heard about ARTEMIZ'),
-  googleSheetUrl: z.string().url('Please provide a valid Google Sheets URL'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -123,7 +122,7 @@ const Register = () => {
       case 2: return ['course', 'year'];
       case 3: return ['experienceLevel', 'programmingLanguages'];
       case 4: return ['areasOfInterest', 'motivation', 'timeCommitment'];
-      case 5: return ['referralSource', 'googleSheetUrl'];
+      case 5: return ['referralSource'];
       default: return [];
     }
   };
@@ -148,36 +147,29 @@ const Register = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call to Google Sheets
-      const response = await fetch(data.googleSheetUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...data,
-          timestamp: new Date().toISOString(),
-        }),
+      // Simulate successful registration
+      console.log('Registration data:', {
+        ...data,
+        timestamp: new Date().toISOString(),
       });
 
-      if (response.ok) {
-        setIsSuccess(true);
-        toast({
-          title: "Registration Successful!",
-          description: "Welcome to ARTEMIZ! We'll be in touch soon.",
-          duration: 5000,
-        });
-        
-        setTimeout(() => {
-          navigate('/');
-        }, 3000);
-      } else {
-        throw new Error('Failed to submit registration');
-      }
+      // Simulate processing delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      setIsSuccess(true);
+      toast({
+        title: "Registration Successful!",
+        description: "Welcome to ARTEMIZ! We'll be in touch soon.",
+        duration: 5000,
+      });
+      
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
     } catch (error) {
       toast({
         title: "Registration Failed",
-        description: "Please check your Google Sheets URL and try again.",
+        description: "Something went wrong. Please try again.",
         variant: "destructive",
         duration: 5000,
       });
@@ -654,23 +646,6 @@ const Register = () => {
                         )}
                       </div>
 
-                      <div className="space-y-2">
-                        <Label htmlFor="googleSheetUrl" className="font-mono">
-                          Google Sheets Submission URL *
-                        </Label>
-                        <Input
-                          id="googleSheetUrl"
-                          {...register('googleSheetUrl')}
-                          className="font-mono"
-                          placeholder="https://script.google.com/macros/s/your-sheet-url/exec"
-                        />
-                        <p className="text-xs text-muted-foreground font-mono">
-                          This is where your registration data will be submitted. Please provide the Google Apps Script URL for data collection.
-                        </p>
-                        {errors.googleSheetUrl && (
-                          <p className="text-terminal-red text-sm font-mono">{errors.googleSheetUrl.message}</p>
-                        )}
-                      </div>
                     </div>
                   </motion.div>
                 )}

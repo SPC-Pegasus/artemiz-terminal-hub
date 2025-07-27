@@ -15,10 +15,11 @@ interface TeamMember {
   id: string;
   name: string;
   role: string;
-  year: string;
+  year?: string;
   department: string;
   bio: string;
-  skills: string[];
+  skills?: string[];
+  expertise?: string[];
   github?: string;
   linkedin?: string;
   email?: string;
@@ -110,6 +111,40 @@ const Team = () => {
     }
   ];
 
+  // Faculty members data
+  const facultyMembers: TeamMember[] = [
+    {
+      id: 'f1',
+      name: 'Dr. Priya Sharma',
+      role: 'Faculty Advisor',
+      department: 'Computer Science Department',
+      bio: 'Professor of Computer Science with 15+ years of experience in software engineering and artificial intelligence. Research interests include machine learning applications and algorithm optimization.',
+      expertise: ['Machine Learning', 'Software Engineering', 'Algorithms', 'AI Research'],
+      email: 'priya.sharma@university.edu',
+      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
+    },
+    {
+      id: 'f2',
+      name: 'Prof. Arjun Kumar',
+      role: 'Technical Mentor',
+      department: 'Computer Science Department',
+      bio: 'Associate Professor specializing in web technologies and database systems. Industry veteran with expertise in full-stack development and system architecture.',
+      expertise: ['Web Development', 'Database Systems', 'System Architecture', 'DevOps'],
+      email: 'arjun.kumar@university.edu',
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+    },
+    {
+      id: 'f3',
+      name: 'Dr. Meera Patel',
+      role: 'Research Coordinator',
+      department: 'Computer Science Department',
+      bio: 'Assistant Professor with focus on cybersecurity and network protocols. Active researcher in information security and privacy-preserving technologies.',
+      expertise: ['Cybersecurity', 'Network Security', 'Privacy', 'Research Methods'],
+      email: 'meera.patel@university.edu',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background pt-20">
       <MatrixBackground />
@@ -140,10 +175,25 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Team Grid */}
+      {/* Our Team Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-display font-bold text-primary mb-4">
+              Our Team
+            </h2>
+            <p className="text-lg text-muted-foreground font-mono">
+              $ ls student_leaders/
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.id}
@@ -179,7 +229,7 @@ const Team = () => {
 
                     {/* Skills Preview */}
                     <div className="flex flex-wrap gap-1 justify-center mb-4">
-                      {member.skills.slice(0, 3).map((skill) => (
+                      {member.skills?.slice(0, 3).map((skill) => (
                         <span
                           key={skill}
                           className="px-2 py-1 bg-primary/10 text-primary text-xs font-mono rounded"
@@ -187,9 +237,9 @@ const Team = () => {
                           {skill}
                         </span>
                       ))}
-                      {member.skills.length > 3 && (
+                      {(member.skills?.length || 0) > 3 && (
                         <span className="px-2 py-1 bg-muted text-muted-foreground text-xs font-mono rounded">
-                          +{member.skills.length - 3}
+                          +{(member.skills?.length || 0) - 3}
                         </span>
                       )}
                     </div>
@@ -227,6 +277,102 @@ const Team = () => {
                             <Linkedin className="w-4 h-4" />
                           </a>
                         )}
+                        {member.email && (
+                          <a
+                            href={`mailto:${member.email}`}
+                            className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                          >
+                            <Mail className="w-4 h-4" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </TerminalBox>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Faculty Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-display font-bold text-primary mb-4">
+              Faculty Support
+            </h2>
+            <p className="text-lg text-muted-foreground font-mono">
+              $ ls faculty_advisors/
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {facultyMembers.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <TerminalBox className="h-full cursor-pointer group hover:scale-105 transition-all duration-300">
+                  <div className="text-center">
+                    {/* Avatar */}
+                    <div className="relative mb-4">
+                      <div className="w-24 h-24 mx-auto rounded-full border-2 border-primary/30 overflow-hidden group-hover:border-primary transition-colors">
+                        <img
+                          src={member.avatar}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+
+                    {/* Info */}
+                    <h3 className="text-xl font-bold text-primary mb-2 font-mono group-hover:text-terminal-cyan transition-colors">
+                      {member.name}
+                    </h3>
+                    <p className="text-terminal-yellow font-mono text-sm mb-1">
+                      {member.role}
+                    </p>
+                    <p className="text-muted-foreground font-mono text-xs mb-4">
+                      {member.department}
+                    </p>
+
+                    {/* Expertise Preview */}
+                    <div className="flex flex-wrap gap-1 justify-center mb-4">
+                      {member.expertise.slice(0, 3).map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2 py-1 bg-primary/10 text-primary text-xs font-mono rounded"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      {member.expertise.length > 3 && (
+                        <span className="px-2 py-1 bg-muted text-muted-foreground text-xs font-mono rounded">
+                          +{member.expertise.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Actions */}
+                    <div className="space-y-2">
+                      <Button
+                        variant="terminal"
+                        size="sm"
+                        className="w-full"
+                        onClick={() => setSelectedMember(member)}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View Profile
+                      </Button>
+                      
+                      <div className="flex justify-center space-x-2">
                         {member.email && (
                           <a
                             href={`mailto:${member.email}`}
@@ -284,10 +430,10 @@ const Team = () => {
 
                 <div>
                   <h4 className="text-lg font-bold text-primary mb-3 font-mono">
-                    $ ls skills/
+                    $ ls {selectedMember.skills ? 'skills' : 'expertise'}/
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {selectedMember.skills.map((skill) => (
+                    {(selectedMember.skills || selectedMember.expertise || []).map((skill) => (
                       <span
                         key={skill}
                         className="px-3 py-1 bg-primary/10 text-primary text-sm font-mono rounded border border-primary/20"
