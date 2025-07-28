@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-
-const navigationItems = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Team', path: '/team' },
-  { name: 'Events', path: '/events' },
-  { name: 'Register', path: '/register' },
-];
+import college from '@/assets/avatars/college_white.png';
+import pegasusLogo from '@/assets/avatars/pegasus.png';
+import avatar from '@/assets/jeetandar.png';
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+
+  const navigationItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Team', path: '/team' },
+    { name: 'Events', path: '/events' },
+    { name: 'Register', path: '/register' },
+  ];
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -22,12 +25,14 @@ export const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-primary/30">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <Terminal className="w-8 h-8 text-primary group-hover:text-terminal-cyan transition-colors" />
-            <span className="text-xl font-display font-bold text-primary group-hover:text-terminal-cyan transition-colors">
-              ARTEMIZ
-            </span>
+          
+          {/* Top-left Image - Pegasus Logo (bigger and wider) */}
+          <Link to="/" className="flex items-center">
+            <img
+              src={pegasusLogo}
+              alt="Pegasus Logo"
+              className="h-10 w-17 object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -38,8 +43,8 @@ export const Navigation = () => {
                 to={item.path}
                 className={cn(
                   "relative font-mono text-sm uppercase tracking-wider transition-colors hover:text-primary",
-                  isActive(item.path) 
-                    ? "text-primary" 
+                  isActive(item.path)
+                    ? "text-primary"
                     : "text-muted-foreground"
                 )}
               >
@@ -51,19 +56,29 @@ export const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </Button>
+          {/* Top-right Section */}
+          <div className="flex items-center space-x-4">
+            {/* College Logo - Hidden on mobile/tablet, visible on desktop */}
+            <img
+              src={college}
+              alt="College Logo"
+              className="hidden md:block h-11 w-17 object-contain"
+            />
+            
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -92,3 +107,5 @@ export const Navigation = () => {
     </nav>
   );
 };
+
+export default Navigation;

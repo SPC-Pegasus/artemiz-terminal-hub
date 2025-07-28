@@ -4,6 +4,12 @@ import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import { TerminalBox } from '@/components/TerminalBox';
 import { MatrixBackground } from '@/components/MatrixBackground';
 import { Button } from '@/components/ui/button';
+import jeetandarAvatar from '@/assets/avatars/jeetandar.jpg';
+import tarun from '@/assets/avatars/tarun.jpg';
+import arden from '@/assets/avatars/arden.jpg';
+import gree from '@/assets/avatars/greeshma mam.png';
+import praka from '@/assets/avatars/praka.png';
+
 import {
   Dialog,
   DialogContent,
@@ -33,116 +39,68 @@ const Team = () => {
   const teamMembers: TeamMember[] = [
     {
       id: '1',
-      name: 'Alex Chen',
-      role: 'President',
+      name: 'Jeetandar N Silwani',
+      role: 'Co-Founder | CodingClub Head',
       year: 'Final Year',
       department: 'Computer Science',
       bio: 'Passionate full-stack developer with expertise in React, Node.js, and cloud technologies. Led multiple successful hackathon teams and contributed to open-source projects.',
-      skills: ['React', 'Node.js', 'Python', 'AWS', 'Docker'],
+      skills: ['React','MongoDB','Express JS', 'Node.js', 'Python', 'AWS', 'Docker','PowerBI','C','C++','Java'],
       github: 'https://github.com/alexchen',
       linkedin: 'https://linkedin.com/in/alexchen',
       email: 'alex@artemiz.club',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
+      avatar: jeetandarAvatar
     },
     {
       id: '2',
-      name: 'Sarah Johnson',
-      role: 'Vice President',
-      year: 'Third Year',
+      name: 'Arden Diago',
+      role: 'Co-Founder',
+      year: 'Passout',
       department: 'Computer Science',
       bio: 'Machine learning enthusiast and data science expert. Specialized in AI/ML projects and passionate about using technology to solve real-world problems.',
-      skills: ['Python', 'TensorFlow', 'Data Science', 'React', 'MongoDB'],
+         skills: ['React','MongoDB','Express JS', 'Node.js', 'Python', 'AWS', 'Docker','PowerBI','C','C++','Java'],
       github: 'https://github.com/sarahjohnson',
       linkedin: 'https://linkedin.com/in/sarahjohnson',
       email: 'sarah@artemiz.club',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
+      avatar: arden
     },
     {
       id: '3',
-      name: 'Raj Patel',
-      role: 'Technical Lead',
-      year: 'Final Year',
+      name: 'Tarun Kumar',
+      role: 'Co-Founder',
+      year: 'Passout',
       department: 'Computer Science',
       bio: 'Backend architect with strong expertise in system design and database optimization. Experienced in building scalable applications and microservices.',
       skills: ['Java', 'Spring', 'PostgreSQL', 'Kubernetes', 'Redis'],
       github: 'https://github.com/rajpatel',
       linkedin: 'https://linkedin.com/in/rajpatel',
       email: 'raj@artemiz.club',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+      avatar: tarun
     },
-    {
-      id: '4',
-      name: 'Emma Davis',
-      role: 'Events Coordinator',
-      year: 'Second Year',
-      department: 'Computer Science',
-      bio: 'Creative problem solver with a passion for UI/UX design and frontend development. Organizes engaging workshops and coding events for the community.',
-      skills: ['JavaScript', 'React', 'UI/UX Design', 'Figma', 'CSS'],
-      github: 'https://github.com/emmadavis',
-      linkedin: 'https://linkedin.com/in/emmadavis',
-      email: 'emma@artemiz.club',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      id: '5',
-      name: 'Michael Kim',
-      role: 'Project Manager',
-      year: 'Third Year',
-      department: 'Computer Science',
-      bio: 'Agile project management expert with experience in leading cross-functional teams. Ensures smooth execution of club projects and initiatives.',
-      skills: ['Scrum', 'JavaScript', 'React Native', 'Project Management', 'Git'],
-      github: 'https://github.com/michaelkim',
-      linkedin: 'https://linkedin.com/in/michaelkim',
-      email: 'michael@artemiz.club',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      id: '6',
-      name: 'Lisa Wang',
-      role: 'Outreach Lead',
-      year: 'Second Year',
-      department: 'Computer Science',
-      bio: 'Community building enthusiast with strong networking skills. Connects ARTEMIZ with industry partners and organizes career development events.',
-      skills: ['Community Building', 'Python', 'Django', 'Marketing', 'Communication'],
-      github: 'https://github.com/lisawang',
-      linkedin: 'https://linkedin.com/in/lisawang',
-      email: 'lisa@artemiz.club',
-      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face'
-    }
+  
   ];
 
   // Faculty members data
   const facultyMembers: TeamMember[] = [
     {
       id: 'f1',
-      name: 'Dr. Priya Sharma',
-      role: 'Faculty Advisor',
+      name: 'Mr. Prakash V',
+      role: 'HOD',
       department: 'Computer Science Department',
-      bio: 'Professor of Computer Science with 15+ years of experience in software engineering and artificial intelligence. Research interests include machine learning applications and algorithm optimization.',
+      bio: '',
       expertise: ['Machine Learning', 'Software Engineering', 'Algorithms', 'AI Research'],
       email: 'priya.sharma@university.edu',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
+      avatar: praka
     },
     {
       id: 'f2',
-      name: 'Prof. Arjun Kumar',
-      role: 'Technical Mentor',
+      name: 'Ms. Greeshma',
+      role: 'Asst. Professor',
       department: 'Computer Science Department',
-      bio: 'Associate Professor specializing in web technologies and database systems. Industry veteran with expertise in full-stack development and system architecture.',
+      bio: '',
       expertise: ['Web Development', 'Database Systems', 'System Architecture', 'DevOps'],
       email: 'arjun.kumar@university.edu',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      id: 'f3',
-      name: 'Dr. Meera Patel',
-      role: 'Research Coordinator',
-      department: 'Computer Science Department',
-      bio: 'Assistant Professor with focus on cybersecurity and network protocols. Active researcher in information security and privacy-preserving technologies.',
-      expertise: ['Cybersecurity', 'Network Security', 'Privacy', 'Research Methods'],
-      email: 'meera.patel@university.edu',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face'
-    }
+      avatar: gree}
+    
   ];
 
   return (

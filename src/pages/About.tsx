@@ -44,7 +44,7 @@ const About = () => {
             <h1 className="text-5xl md:text-6xl font-display font-bold text-primary glow-text mb-6">
               About ARTEMIZ
             </h1>
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto mt-10">
               <TerminalBox title="about.sh">
                 <TypewriterText
                   text="Discovering the story behind our coding community..."
@@ -58,7 +58,7 @@ const About = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 px-4">
+      <section className="py-1 ">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -70,7 +70,7 @@ const About = () => {
             <TerminalBox title="mission.txt" className="max-w-4xl mx-auto">
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-display font-bold text-primary mb-4">
+                  <h2 className="text-1xl font-display font-bold text-primary mb-4">
                     $ cat mission_statement.txt
                   </h2>
                   <p className="text-muted-foreground font-mono leading-relaxed">

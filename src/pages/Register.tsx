@@ -13,8 +13,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { TerminalBox } from '@/components/TerminalBox';
 import { MatrixBackground } from '@/components/MatrixBackground';
-import { useToast } from '@/hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const formSchema = z.object({
   // Step 1: Basic Info
@@ -50,8 +49,10 @@ const Register = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { toast } = useToast();
-  const navigate = useNavigate();
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
+
+  // Your Google Apps Script URL
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3546TnLC5f_QF88JmToXrCae33XMDidfiTjBFvQYPvrabdYaikUeMCrLcXrEGDreL/exec";
 
   const totalSteps = 5;
 
@@ -147,31 +148,43 @@ const Register = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate successful registration
-      console.log('Registration data:', {
+      // Prepare data for Google Sheets
+      const submissionData = {
         ...data,
         timestamp: new Date().toISOString(),
+      };
+
+      console.log('Submitting data:', submissionData);
+
+      // Send data to Google Apps Script
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+        mode: 'no-cors', // Required for Google Apps Script
       });
 
-      // Simulate processing delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
+      // Note: Due to no-cors mode, we can't read the response
+      // but the request will still be processed by Google Apps Script
+      
       setIsSuccess(true);
-      toast({
-        title: "Registration Successful!",
-        description: "Welcome to ARTEMIZ! We'll be in touch soon.",
-        duration: 5000,
+      setSubmitStatus({
+        type: 'success',
+        message: "Registration successful! Welcome to ARTEMIZ! We'll be in touch soon."
       });
       
       setTimeout(() => {
-        navigate('/');
+        // Redirect to home page or show success message
+        window.location.href = '/';
       }, 3000);
+
     } catch (error) {
-      toast({
-        title: "Registration Failed",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-        duration: 5000,
+      console.error('Submission error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: "Something went wrong. Please try again."
       });
     } finally {
       setIsSubmitting(false);
@@ -285,7 +298,16 @@ const Register = () => {
 
         {/* Form */}
         <div className="max-w-4xl mx-auto">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Status Alert */}
+          {submitStatus.type && (
+            <Alert className={`mb-6 ${submitStatus.type === 'success' ? 'border-green-500' : 'border-red-500'}`}>
+              <AlertDescription className="font-mono">
+                {submitStatus.message}
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <div onSubmit={handleSubmit(onSubmit)}>
             <TerminalBox className="min-h-[500px]">
               <AnimatePresence mode="wait">
                 {/* Step 1: Basic Info */}
@@ -680,6 +702,7 @@ const Register = () => {
                     variant="terminal"
                     disabled={isSubmitting}
                     className="font-mono"
+                    onClick={handleSubmit(onSubmit)}
                   >
                     {isSubmitting ? (
                       <>
@@ -696,7 +719,7 @@ const Register = () => {
                 )}
               </div>
             </TerminalBox>
-          </form>
+          </div>
         </div>
       </div>
     </div>

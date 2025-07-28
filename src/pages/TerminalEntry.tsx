@@ -38,7 +38,7 @@ const TerminalEntry = () => {
   const bootMessages = [
     'ARTEMIZ Terminal v2.1.0',
     'Department of Computer Science',
-    'University Coding Club System',
+    'ST PAULS COLLEGE',
     '',
     'Initializing connection...',
     'Establishing secure link...',

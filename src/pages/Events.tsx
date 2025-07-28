@@ -9,8 +9,8 @@ interface Event {
   id: string;
   title: string;
   type: 'workshop' | 'hackathon' | 'competition' | 'talk' | 'networking';
-  date: string;
-  time: string;
+  // date: string;
+  // time: string;
   location: string;
   description: string;
   maxParticipants?: number;
@@ -27,8 +27,8 @@ const Events = () => {
       id: '1',
       title: 'Web Development Bootcamp',
       type: 'workshop',
-      date: '2024-02-15',
-      time: '10:00 AM - 4:00 PM',
+      // date: 'TBA',
+      // time: 'TBA',
       location: 'CS Lab 1',
       description: 'Intensive full-day workshop covering React, Node.js, and modern web development practices. Perfect for beginners and intermediate developers.',
       maxParticipants: 30,
@@ -41,8 +41,8 @@ const Events = () => {
       id: '2',
       title: 'ARTEMIZ Hackathon 2024',
       type: 'hackathon',
-      date: '2024-02-20',
-      time: '9:00 AM - 9:00 PM',
+      // date: 'TBA',
+      // time: '9:00 AM - 9:00 PM',
       location: 'Main Auditorium',
       description: '12-hour hackathon focused on building innovative solutions for real-world problems. Teams of 2-4 members will compete for exciting prizes.',
       maxParticipants: 100,
@@ -56,8 +56,8 @@ const Events = () => {
       id: '3',
       title: 'AI/ML Workshop Series',
       type: 'workshop',
-      date: '2024-02-25',
-      time: '2:00 PM - 5:00 PM',
+      // date: '2024-02-25',
+      // time: '2:00 PM - 5:00 PM',
       location: 'CS Lab 2',
       description: 'Explore machine learning fundamentals with hands-on projects using Python and TensorFlow. Build your first AI model!',
       maxParticipants: 25,
@@ -70,8 +70,8 @@ const Events = () => {
       id: '4',
       title: 'Industry Expert Talk: Career in Tech',
       type: 'talk',
-      date: '2024-03-01',
-      time: '11:00 AM - 12:30 PM',
+      // date: '2024-03-01',
+      // time: '11:00 AM - 12:30 PM',
       location: 'Seminar Hall',
       description: 'Senior software engineers from top tech companies share insights about career paths, interview preparation, and industry trends.',
       maxParticipants: 150,
@@ -83,8 +83,8 @@ const Events = () => {
       id: '5',
       title: 'Code Golf Championship',
       type: 'competition',
-      date: '2024-01-15',
-      time: '3:00 PM - 6:00 PM',
+      // date: '2024-01-15',
+      // time: '3:00 PM - 6:00 PM',
       location: 'CS Lab 3',
       description: 'Programming competition where participants solve algorithmic challenges with the shortest code possible. Test your problem-solving skills!',
       status: 'completed',
@@ -94,8 +94,8 @@ const Events = () => {
       id: '6',
       title: 'Open Source Contribution Workshop',
       type: 'workshop',
-      date: '2024-01-08',
-      time: '1:00 PM - 4:00 PM',
+      // date: '2024-01-08',
+      // time: '1:00 PM - 4:00 PM',
       location: 'CS Lab 1',
       description: 'Learn how to contribute to open source projects, understand Git workflows, and make your first contribution to a real project.',
       status: 'completed',
@@ -167,12 +167,12 @@ const Events = () => {
             {/* Event Details */}
             <div className="space-y-2 text-sm font-mono">
               <div className="flex items-center space-x-2 text-muted-foreground">
-                <Calendar className="w-4 h-4" />
-                <span>{formatDate(event.date)}</span>
+                {/* <Calendar className="w-4 h-4" /> */}
+                {/* <span>{formatDate(event.date)}</span> */}
               </div>
               <div className="flex items-center space-x-2 text-muted-foreground">
-                <Clock className="w-4 h-4" />
-                <span>{event.time}</span>
+                {/* <Clock className="w-4 h-4" /> */}
+                {/* <span>{event.time}</span> */}
               </div>
               <div className="flex items-center space-x-2 text-muted-foreground">
                 <MapPin className="w-4 h-4" />
