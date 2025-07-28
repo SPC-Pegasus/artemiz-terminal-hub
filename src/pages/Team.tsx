@@ -397,31 +397,31 @@ const Team = () => {
           {selectedMember && (
             <div className="flex flex-col max-h-[90vh]">
               {/* Fixed Header */}
-              <div className="flex-shrink-0 bg-card border-b border-primary/20 p-6">
-                <div className="text-center space-y-4">
-                  <div className="relative inline-block">
+              <div className="flex-shrink-0 bg-card border-b border-primary/20 p-4">
+                <div className="flex items-start space-x-4">
+                  <div className="relative flex-shrink-0">
                     <img
                       src={selectedMember.avatar}
                       alt={selectedMember.name}
-                      className="w-24 h-24 rounded-full border-2 border-primary/50 mx-auto"
+                      className="w-16 h-16 rounded-full border-2 border-primary/50"
                     />
                     <div className="absolute inset-0 rounded-full bg-primary/10"></div>
                   </div>
                   
-                  <div>
-                    <h2 className="text-2xl font-bold text-primary font-mono mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-xl font-bold text-primary font-mono mb-1">
                       {selectedMember.name}
                     </h2>
-                    <p className="text-terminal-yellow font-mono text-base mb-2">
+                    <p className="text-terminal-yellow font-mono text-sm mb-1">
                       {selectedMember.role}
                     </p>
                     {selectedMember.year && selectedMember.department && (
-                      <p className="text-primary/80 font-mono text-sm">
+                      <p className="text-primary/80 font-mono text-xs">
                         {selectedMember.year} • {selectedMember.department}
                       </p>
                     )}
                     {!selectedMember.year && selectedMember.department && (
-                      <p className="text-primary/80 font-mono text-sm">
+                      <p className="text-primary/80 font-mono text-xs">
                         {selectedMember.department}
                       </p>
                     )}
