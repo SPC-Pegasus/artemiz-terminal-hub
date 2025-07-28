@@ -393,93 +393,106 @@ const Team = () => {
 
       {/* Member Detail Modal */}
       <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
-        <DialogContent className="bg-card border-primary/30 max-w-2xl">
+        <DialogContent className="bg-card border-primary/30 max-w-md mx-4 sm:max-w-lg md:max-w-2xl max-h-[90vh] overflow-y-auto">
           {selectedMember && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="font-display text-2xl text-primary">
-                  {selectedMember.name}
-                </DialogTitle>
-              </DialogHeader>
-              
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
+            <div className="p-4 space-y-6">
+              {/* Header with Avatar and Basic Info */}
+              <div className="text-center space-y-4">
+                <div className="relative inline-block">
                   <img
                     src={selectedMember.avatar}
                     alt={selectedMember.name}
-                    className="w-20 h-20 rounded-full border-2 border-primary/30"
+                    className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-primary/50 mx-auto"
                   />
-                  <div>
-                    <p className="text-terminal-yellow font-mono text-lg">
-                      {selectedMember.role}
-                    </p>
-                    <p className="text-muted-foreground font-mono">
+                  <div className="absolute inset-0 rounded-full bg-primary/10"></div>
+                </div>
+                
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-primary font-mono mb-2">
+                    {selectedMember.name}
+                  </h2>
+                  <p className="text-terminal-yellow font-mono text-lg mb-1">
+                    {selectedMember.role}
+                  </p>
+                  {selectedMember.year && selectedMember.department && (
+                    <p className="text-primary/80 font-mono text-sm">
                       {selectedMember.year} • {selectedMember.department}
                     </p>
-                  </div>
+                  )}
+                  {!selectedMember.year && selectedMember.department && (
+                    <p className="text-primary/80 font-mono text-sm">
+                      {selectedMember.department}
+                    </p>
+                  )}
                 </div>
+              </div>
 
-                <div>
-                  <h4 className="text-lg font-bold text-primary mb-2 font-mono">
-                    $ cat bio.txt
-                  </h4>
-                  <p className="text-muted-foreground font-mono text-sm leading-relaxed">
+              {/* Bio Section */}
+              <div className="space-y-3">
+                <p className="text-terminal-green font-mono text-sm">
+                  $ cat bio.txt
+                </p>
+                <div className="bg-background/50 p-4 rounded border border-primary/20">
+                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                     {selectedMember.bio}
                   </p>
                 </div>
+              </div>
 
-                <div>
-                  <h4 className="text-lg font-bold text-primary mb-3 font-mono">
+              {/* Skills Section */}
+              {(selectedMember.skills || selectedMember.expertise) && (
+                <div className="space-y-3">
+                  <p className="text-terminal-green font-mono text-sm">
                     $ ls {selectedMember.skills ? 'skills' : 'expertise'}/
-                  </h4>
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {(selectedMember.skills || selectedMember.expertise || []).map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 bg-primary/10 text-primary text-sm font-mono rounded border border-primary/20"
+                        className="px-2 py-1 sm:px-3 sm:py-1 bg-primary/20 text-primary text-xs sm:text-sm font-mono rounded border border-primary/30"
                       >
                         {skill}
                       </span>
                     ))}
                   </div>
                 </div>
+              )}
 
-                <div className="flex space-x-4 pt-4">
-                  {selectedMember.github && (
-                    <a
-                      href={selectedMember.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant="terminal-secondary" size="sm">
-                        <Github className="w-4 h-4 mr-2" />
-                        GitHub
-                      </Button>
-                    </a>
-                  )}
-                  {selectedMember.linkedin && (
-                    <a
-                      href={selectedMember.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant="terminal-secondary" size="sm">
-                        <Linkedin className="w-4 h-4 mr-2" />
-                        LinkedIn
-                      </Button>
-                    </a>
-                  )}
-                  {selectedMember.email && (
-                    <a href={`mailto:${selectedMember.email}`}>
-                      <Button variant="terminal-secondary" size="sm">
-                        <Mail className="w-4 h-4 mr-2" />
-                        Email
-                      </Button>
-                    </a>
-                  )}
-                </div>
+              {/* Contact Links */}
+              <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 pt-4">
+                {selectedMember.github && (
+                  <a
+                    href={selectedMember.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center space-x-2 px-3 py-2 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-xs sm:text-sm"
+                  >
+                    <Github className="w-4 h-4" />
+                    <span>GITHUB</span>
+                  </a>
+                )}
+                {selectedMember.linkedin && (
+                  <a
+                    href={selectedMember.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center space-x-2 px-3 py-2 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-xs sm:text-sm"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    <span>LINKEDIN</span>
+                  </a>
+                )}
+                {selectedMember.email && (
+                  <a
+                    href={`mailto:${selectedMember.email}`}
+                    className="flex items-center justify-center space-x-2 px-3 py-2 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-xs sm:text-sm"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>EMAIL</span>
+                  </a>
+                )}
               </div>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>
