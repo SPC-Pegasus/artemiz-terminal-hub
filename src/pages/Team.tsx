@@ -393,35 +393,35 @@ const Team = () => {
 
       {/* Member Detail Modal */}
       <Dialog open={!!selectedMember} onOpenChange={() => setSelectedMember(null)}>
-        <DialogContent className="bg-card/95 backdrop-blur-sm border-primary/30 w-[95vw] max-w-md mx-auto max-h-[85vh] overflow-hidden p-0 rounded-lg">
+        <DialogContent className="bg-card/95 backdrop-blur-sm border-primary/30 w-[90vw] max-w-lg mx-auto max-h-[90vh] overflow-hidden p-0 rounded-lg">
           {selectedMember && (
-            <div className="flex flex-col max-h-[85vh]">
+            <div className="flex flex-col max-h-[90vh]">
               {/* Fixed Header */}
-              <div className="flex-shrink-0 bg-card border-b border-primary/20 p-4">
-                <div className="text-center space-y-3">
+              <div className="flex-shrink-0 bg-card border-b border-primary/20 p-6">
+                <div className="text-center space-y-4">
                   <div className="relative inline-block">
                     <img
                       src={selectedMember.avatar}
                       alt={selectedMember.name}
-                      className="w-20 h-20 rounded-full border-2 border-primary/50 mx-auto"
+                      className="w-24 h-24 rounded-full border-2 border-primary/50 mx-auto"
                     />
                     <div className="absolute inset-0 rounded-full bg-primary/10"></div>
                   </div>
                   
                   <div>
-                    <h2 className="text-xl font-bold text-primary font-mono mb-1">
+                    <h2 className="text-2xl font-bold text-primary font-mono mb-2">
                       {selectedMember.name}
                     </h2>
-                    <p className="text-terminal-yellow font-mono text-sm mb-1">
+                    <p className="text-terminal-yellow font-mono text-base mb-2">
                       {selectedMember.role}
                     </p>
                     {selectedMember.year && selectedMember.department && (
-                      <p className="text-primary/80 font-mono text-xs">
+                      <p className="text-primary/80 font-mono text-sm">
                         {selectedMember.year} • {selectedMember.department}
                       </p>
                     )}
                     {!selectedMember.year && selectedMember.department && (
-                      <p className="text-primary/80 font-mono text-xs">
+                      <p className="text-primary/80 font-mono text-sm">
                         {selectedMember.department}
                       </p>
                     )}
@@ -430,14 +430,14 @@ const Team = () => {
               </div>
 
               {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
                 {/* Bio Section */}
-                <div className="space-y-2">
-                  <p className="text-terminal-green font-mono text-xs">
+                <div className="space-y-3">
+                  <p className="text-terminal-green font-mono text-sm">
                     $ cat bio.txt
                   </p>
-                  <div className="bg-background/50 p-3 rounded border border-primary/20">
-                    <p className="text-muted-foreground leading-relaxed text-sm">
+                  <div className="bg-background/50 p-4 rounded border border-primary/20">
+                    <p className="text-muted-foreground leading-relaxed text-base">
                       {selectedMember.bio}
                     </p>
                   </div>
@@ -445,15 +445,15 @@ const Team = () => {
 
                 {/* Skills Section */}
                 {(selectedMember.skills || selectedMember.expertise) && (
-                  <div className="space-y-2">
-                    <p className="text-terminal-green font-mono text-xs">
+                  <div className="space-y-3">
+                    <p className="text-terminal-green font-mono text-sm">
                       $ ls {selectedMember.skills ? 'skills' : 'expertise'}/
                     </p>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                       {(selectedMember.skills || selectedMember.expertise || []).map((skill) => (
                         <span
                           key={skill}
-                          className="px-2 py-1 bg-primary/20 text-primary text-xs font-mono rounded border border-primary/30"
+                          className="px-3 py-1.5 bg-primary/20 text-primary text-sm font-mono rounded border border-primary/30"
                         >
                           {skill}
                         </span>
@@ -461,42 +461,45 @@ const Team = () => {
                     </div>
                   </div>
                 )}
-              </div>
 
-              {/* Fixed Footer */}
-              <div className="flex-shrink-0 bg-card border-t border-primary/20 p-4">
-                <div className="flex flex-col gap-2">
-                  {selectedMember.github && (
-                    <a
-                      href={selectedMember.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center space-x-2 px-3 py-2 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-xs"
-                    >
-                      <Github className="w-3 h-3" />
-                      <span>GITHUB</span>
-                    </a>
-                  )}
-                  {selectedMember.linkedin && (
-                    <a
-                      href={selectedMember.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center space-x-2 px-3 py-2 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-xs"
-                    >
-                      <Linkedin className="w-3 h-3" />
-                      <span>LINKEDIN</span>
-                    </a>
-                  )}
-                  {selectedMember.email && (
-                    <a
-                      href={`mailto:${selectedMember.email}`}
-                      className="flex items-center justify-center space-x-2 px-3 py-2 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-xs"
-                    >
-                      <Mail className="w-3 h-3" />
-                      <span>EMAIL</span>
-                    </a>
-                  )}
+                {/* Social Links Section */}
+                <div className="space-y-3">
+                  <p className="text-terminal-green font-mono text-sm">
+                    $ ls social_links/
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    {selectedMember.github && (
+                      <a
+                        href={selectedMember.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-3 px-4 py-3 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-sm"
+                      >
+                        <Github className="w-5 h-5" />
+                        <span>GITHUB</span>
+                      </a>
+                    )}
+                    {selectedMember.linkedin && (
+                      <a
+                        href={selectedMember.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-3 px-4 py-3 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-sm"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                        <span>LINKEDIN</span>
+                      </a>
+                    )}
+                    {selectedMember.email && (
+                      <a
+                        href={`mailto:${selectedMember.email}`}
+                        className="flex items-center space-x-3 px-4 py-3 bg-terminal-cyan/20 text-terminal-cyan rounded border border-terminal-cyan/30 hover:bg-terminal-cyan/30 transition-colors font-mono text-sm"
+                      >
+                        <Mail className="w-5 h-5" />
+                        <span>EMAIL</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
