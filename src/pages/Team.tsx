@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import jeetandarAvatar from '@/assets/avatars/jeetandar.jpg';
 import tarun from '@/assets/avatars/tarun.jpg';
 import arden from '@/assets/avatars/arden.jpg';
-import gree from '@/assets/avatars/greeshma mam.png';
+import gree from '@/assets/avatars/LINCY-1.jpg.webp';
 import praka from '@/assets/avatars/praka.png';
 
 import {
@@ -40,7 +40,7 @@ const Team = () => {
     {
       id: '1',
       name: 'Jeetandar N Silwani',
-      role: 'Co-Founder | CodingClub Head',
+      role: 'Co-Founder | Coding Club Head',
       year: 'Final Year',
       department: 'Computer Science',
       bio: 'Passionate full-stack developer with expertise in React, Node.js, and cloud technologies. Led multiple successful hackathon teams and contributed to open-source projects.',
@@ -93,7 +93,7 @@ const Team = () => {
     },
     {
       id: 'f2',
-      name: 'Ms. Greeshma',
+      name: 'Ms. Lincy Joseph',
       role: 'Asst. Professor',
       department: 'Computer Science Department',
       bio: '',
