@@ -82,7 +82,7 @@ const Register = () => {
 
   const interestOptions = [
     'Web Development', 'Mobile Development', 'Machine Learning', 'Data Science',
-    'DevOps', 'Cybersecurity', 'Game Development', 'UI/UX Design',
+    'DevOps', 'Cybersecurity', 'Prompt AI', 'UI/UX Design',
     'Blockchain', 'IoT', 'Cloud Computing', 'Open Source'
   ];
 
